@@ -1,0 +1,175 @@
+:root {
+    --primary-color: rgb(8, 49, 84); 
+    --secondary-color: #a14741; 
+    --text-color: #333;
+    --bg-color:skyblue;
+    --card-bg: #8c8585;
+    --border-radius: 8px;
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--bg-color);
+    overflow: hidden; 
+}
+
+.quiz-container {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    transform: scale(0.9); 
+    opacity: 0; 
+    animation: fadeInScale 0.8s forwards ease-out;
+    position: relative; 
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 2.5em;
+    animation: slideInTop 0.8s forwards ease-out 0.2s;
+}
+
+.question-container h2 {
+    color: var(--text-color);
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover:not(.correct):not(.wrong) {
+    background-color: #9da79d;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn.correct {
+    background-color: var(--primary-color);
+    animation: pulseCorrect 0.5s ease-in-out;
+}
+
+.btn.wrong {
+    background-color: var(--secondary-color);
+    animation: shakeWrong 0.5s ease-in-out;
+}
+
+.controls {
+    margin-top: 30px;
+}
+
+.next-btn, .restart-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.next-btn:hover, .restart-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.hide {
+    display: none;
+}
+
+.result-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e9ecef;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.8s forwards;
+}
+
+.result-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.result-container p {
+    font-size: 1.3em;
+    color: var(--text-color);
+}
+
+#score {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+/* Animations */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInTop {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseCorrect {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(76, 175, 80, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+
+@keyframes shakeWrong {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
